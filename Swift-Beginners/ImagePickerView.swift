@@ -19,10 +19,13 @@ struct ImagePickerView: UIViewControllerRepresentable {
         }
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey :Any]) {
             
-            if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-                parent.captureImage = originalImage
+            picker.dismiss(animated: true){
+                if let originalImage =
+                    info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+                    {
+                    self.parent.captureImage = originalImage
+                }
             }
-            parent.isShowSheet.toggle()
         }
         
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -42,7 +45,7 @@ struct ImagePickerView: UIViewControllerRepresentable {
         return myImagePickerController
     }
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-        <#code#>
+        //処理なし
     }
     
 }
